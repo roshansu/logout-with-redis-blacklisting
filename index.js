@@ -3,12 +3,14 @@ import cookieParser from "cookie-parser";
 import connectDb from "./src/config/db.js";
 import redisClient from "./src/config/redis.js";
 import userRouter from "./src/router/userRouter.js";
+import rateLimit from "./src/middleware/rateLimiter.js";
 
 const app = e()
 const PORT = 8000
 
 app.use(e.json())
 app.use(cookieParser())
+app.use(rateLimit)
 
 app.use('/user', userRouter)
 
